@@ -116,12 +116,39 @@ int main()
 		}
 	}
 
+    cout<<"sebelum decode : "<<endl;
 	cout<<copy<<endl;
-	cout<<arr<<endl;
-	printf("%d\n", freq[0]);
+    cout<<endl<<"karakter unik : "<<endl;
+	// cout<<arr<<endl;
+    for(int i = 0;i < size;i++){
+        cout<<arr[i]<<" ";
+    }
 
+    cout<<endl<<endl<<"frekuensi : "<<endl;
+    for(int i = 0;i < size;i++){
+        cout<<freq[i]<<" ";
+    }
+    cout<<endl<<endl<<"alokasi bit setiap karakter : "<<endl;
 	HuffmanCodes(arr, freq, size);
-    printCodes(codes, arr, size)
+    printCodes(codes, arr, size);
+
+    string res = "";
+
+    cout<<endl<<"hasil encode :"<<endl;
+
+    for(int i = 0;i < strlen(copy);i++){
+        for(int j = 0;j < strlen(arr);j++){
+            if(copy[i]==arr[j]) {
+                res.append(codes[arr[j]]);
+                break;
+            }
+        }
+    }
+
+    cout<<res<<endl;
+
+    cout<<endl<<"bit sebelum : "<<strlen(copy)*8<<endl;
+    cout<<"bit sesudah : "<<res.length()<<endl;
 
     return 0;
 }
