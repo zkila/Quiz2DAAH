@@ -110,5 +110,13 @@ int main()
 
 	HuffmanCodes(arr, freq, size);
 
+	for (int i = 0; i < size; i++) {
+    if (!codes[arr[i]].empty()) {
+        if (arr[i] == '\n')
+            cout << "\\n" << ": " << codes[arr[i]] << endl;
+        else
+            cout << arr[i] << ": " << codes[arr[i]] << endl;
+    }
+
     return 0;
 }
