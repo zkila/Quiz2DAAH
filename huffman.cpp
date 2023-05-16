@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+string codes[256];
+
 struct MinHeapNode {
     char data;
     unsigned freq;
@@ -20,16 +22,18 @@ struct compare {
     }
 };
  
-void printCodes(struct MinHeapNode* root, string str)
+void storeCodes(struct MinHeapNode* root, string str)
 {
     if (!root)
         return;
-    if (root->data != '$'){
-        if(root->data == '\n') cout << "\\n" << ": " << str << "\n";
-	    else cout << root->data << ": " << str << "\n";
+    if (root->data != '$') {
+        if (root->data == '\n')
+            codes[root->data] = "\\n" + str;
+        else
+            codes[root->data] = str;
     }
-    printCodes(root->left, str + "0");
-    printCodes(root->right, str + "1");
+    storeCodes(root->left, str + "0");
+    storeCodes(root->right, str + "1");
 }
  
 void HuffmanCodes(char data[], int freq[], int size)
@@ -53,7 +57,7 @@ void HuffmanCodes(char data[], int freq[], int size)
         top->right = right;
         minHeap.push(top);
     }
-    printCodes(minHeap.top(), "");
+    storeCodes(minHeap.top(), "");
 }
  
 int main()
