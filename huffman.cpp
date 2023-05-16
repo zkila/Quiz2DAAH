@@ -59,6 +59,18 @@ void HuffmanCodes(char data[], int freq[], int size)
     }
     storeCodes(minHeap.top(), "");
 }
+
+void printCodes(string codes[], char arr[], int size)
+{
+    for (int i = 0; i < size; i++) {
+        if (!codes[arr[i]].empty()) {
+            if (arr[i] == '\n')
+                cout << "\\n" << ": " << codes[arr[i]] << endl;
+            else
+                cout << arr[i] << ": " << codes[arr[i]] << endl;
+        }
+    }
+}
  
 int main()
 {
@@ -109,14 +121,7 @@ int main()
 	printf("%d\n", freq[0]);
 
 	HuffmanCodes(arr, freq, size);
+    printCodes(codes, arr, size)
 
-	for (int i = 0; i < size; i++) {
-        if (!codes[arr[i]].empty()) {
-            if (arr[i] == '\n')
-                cout << "\\n" << ": " << codes[arr[i]] << endl;
-            else
-                cout << arr[i] << ": " << codes[arr[i]] << endl;
-        }
-    }
     return 0;
 }
