@@ -72,25 +72,37 @@ void printCodes(string codes[], char arr[], int size)
     }
 }
  
-int main()
+int main(int argc, char* argv[])
 {
 	char arr[256]="";
 	int freq[256]={0};
 	int size=0;
-
-	  	
-	char filename[100] = "input.txt";
-    FILE *fp = fopen(filename, "r");
-
+    char filename[100] = "";
+    FILE *fp;
     char ch;
-    char copy[1000]="";
-    int i=0;
-    //memasukkan tiap karakter yang dibaca (dari txt) ke string
-    while ((ch = fgetc(fp)) != EOF){
-		copy[i]=ch;
-        i++;
+    char copy[1000] = "";
+    int i = 0;
+
+	if(argc != 2 || (argv[1][1] != 'f' && argv[1][1] != 's')) {
+        printf("Argument tidak valid\nCara execute: ./lukisan -[a/b]\n");
+        exit(0);
     }
-    fclose(fp);
+    if (strcmp(argv[1], "-f") == 0) {
+        cout << "Masukkan";
+        *fp = fopen(filename, "r");
+
+        //memasukkan tiap karakter yang dibaca (dari txt) ke string
+        while ((ch = fgetc(fp)) != EOF){
+            copy[i]=ch;
+            i++;
+        }
+        fclose(fp);
+    }    
+    else if (strcmp(argv[1], "-s") == 0) {
+        cin >> inp;
+    }
+    
+
 
     //mengubah setiap huruf alfabet menjadi kapital untuk memudahkan
 	for(int i=0; i<strlen(copy); i++){
