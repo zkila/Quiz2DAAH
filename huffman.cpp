@@ -27,9 +27,6 @@ void storeCodes(struct MinHeapNode* root, string str)
     if (!root)
         return;
     if (root->data != '$') {
-        if (root->data == '\n')
-            codes[root->data] = "\\n" + str;
-        else
             codes[root->data] = str;
     }
     storeCodes(root->left, str + "0");
@@ -88,8 +85,9 @@ int main(int argc, char* argv[])
         exit(0);
     }
     if (strcmp(argv[1], "-f") == 0) {
-        cout << "Masukkan";
-        *fp = fopen(filename, "r");
+        cout << "Masukkan nama file dengan tipe txt (contoh \"file.txt\"): "<<endl;
+        cin>>filename;
+        fp = fopen(filename, "r");
 
         //memasukkan tiap karakter yang dibaca (dari txt) ke string
         while ((ch = fgetc(fp)) != EOF){
@@ -99,7 +97,8 @@ int main(int argc, char* argv[])
         fclose(fp);
     }    
     else if (strcmp(argv[1], "-s") == 0) {
-        cin >> inp;
+        cout<<"Masukkan teks yang ingin diencode: "<<endl;
+        scanf("%[^\n]s", copy);
     }
     
 
