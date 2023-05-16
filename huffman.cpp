@@ -71,13 +71,14 @@ void printCodes(string codes[], char arr[], int size)
  
 int main(int argc, char* argv[])
 {
-	char arr[256]="";
-	int freq[256]={0};
-	int size=0;
+	char arr[256] = "";
     char filename[100] = "";
-    FILE *fp;
-    char ch;
     char copy[1000] = "";
+	int freq[256] = {0};
+	int size = 0;
+    char ch;
+    FILE *fp;    
+    
     int i = 0;
 
 	if(argc != 2 || (argv[1][1] != 'f' && argv[1][1] != 's')) {
@@ -85,81 +86,82 @@ int main(int argc, char* argv[])
         exit(0);
     }
     if (strcmp(argv[1], "-f") == 0) {
-        cout << "Masukkan nama file dengan tipe txt (contoh \"file.txt\"): "<<endl;
-        cin>>filename;
+        cout << "Masukkan nama file dengan tipe txt (contoh \"file.txt\"): " << endl;
+        cin >> filename;
         fp = fopen(filename, "r");
 
         //memasukkan tiap karakter yang dibaca (dari txt) ke string
         while ((ch = fgetc(fp)) != EOF){
-            copy[i]=ch;
+            copy[i] = ch;
             i++;
         }
         fclose(fp);
     }    
     else if (strcmp(argv[1], "-s") == 0) {
-        cout<<"Masukkan teks yang ingin diencode: "<<endl;
+        cout<<"Masukkan teks yang ingin diencode: " << endl;
         scanf("%[^\n]s", copy);
     }
     
 
 
     //mengubah setiap huruf alfabet menjadi kapital untuk memudahkan
-	for(int i=0; i<strlen(copy); i++){
-        if(copy[i]>=97 && copy[i]<=122){
-            copy[i]-=32;
+	for(int i = 0; i < strlen(copy); i++){
+        if(copy[i] >= 97 && copy[i] <= 122){
+            copy[i] -= 32;
         }
     }
 	
 	char curr;
-	int n=0,j,l;
-	for(l = 0; l<strlen(copy);l++){
+	int n = 0;
+    int j, l;
+	for(l = 0; l < strlen(copy); l++){
 		// curr=copy[l];
-		for(j = 0; j<n; j++){
-			if(arr[j]==copy[l]){
+		for(j = 0; j < n; j++){
+			if(arr[j] == copy[l]){
 				freq[j]++;
 				break;
 			}
 		}
-		if(j==n){
-			arr[n++]=copy[l];
+		if(j == n){
+			arr[n++] = copy[l];
 			freq[j]++;
 			size++;
 		}
 	}
 
-    cout<<"sebelum decode : "<<endl;
-	cout<<copy<<endl;
-    cout<<endl<<"karakter unik : "<<endl;
+    cout << "sebelum decode : " << endl;
+	cout << copy << endl;
+    cout << endl << "karakter unik : " << endl;
 	// cout<<arr<<endl;
-    for(int i = 0;i < size;i++){
-        cout<<arr[i]<<" ";
+    for(int i = 0; i < size; i++){
+        cout << arr[i] << " ";
     }
 
-    cout<<endl<<endl<<"frekuensi : "<<endl;
-    for(int i = 0;i < size;i++){
-        cout<<freq[i]<<" ";
+    cout << endl << endl << "frekuensi : " << endl;
+    for(int i = 0; i < size; i++){
+        cout << freq[i] << " ";
     }
-    cout<<endl<<endl<<"alokasi bit setiap karakter : "<<endl;
+    cout << endl << endl << "alokasi bit setiap karakter : " << endl;
 	HuffmanCodes(arr, freq, size);
     printCodes(codes, arr, size);
 
     string res = "";
 
-    cout<<endl<<"hasil encode :"<<endl;
+    cout << endl << "hasil encode :" << endl;
 
-    for(int i = 0;i < strlen(copy);i++){
-        for(int j = 0;j < strlen(arr);j++){
-            if(copy[i]==arr[j]) {
+    for(int i = 0; i < strlen(copy); i++){
+        for(int j = 0; j < strlen(arr); j++){
+            if(copy[i] == arr[j]) {
                 res.append(codes[arr[j]]);
                 break;
             }
         }
     }
 
-    cout<<res<<endl;
+    cout << res << endl;
 
-    cout<<endl<<"bit sebelum : "<<strlen(copy)*8<<endl;
-    cout<<"bit sesudah : "<<res.length()<<endl;
+    cout << endl << "bit sebelum : " << strlen(copy) * 8 << endl;
+    cout << "bit sesudah : " << res.length() << endl;
 
     return 0;
 }
