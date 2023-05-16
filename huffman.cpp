@@ -56,11 +56,30 @@ void HuffmanCodes(char data[], int freq[], int size)
  
 int main()
 {
-    char arr[] = { 'a', 'b', 'c', 'd', 'e', 'f' };
-    int freq[] = { 5, 9, 12, 13, 16, 45 };
-    int size = sizeof(arr) / sizeof(arr[0]);
- 
-    HuffmanCodes(arr, freq, size);
- 
+	char arr[256]="";
+	int freq[256]={0};
+	int size=0;
+
+	  	
+	char filename[100] = "input.txt";
+    FILE *fp = fopen(filename, "r");
+
+    char ch;
+    char copy[1000]="";
+    int i=0;
+    //memasukkan tiap karakter yang dibaca (dari txt) ke string
+    while ((ch = fgetc(fp)) != EOF){
+		copy[i]=ch;
+        i++;
+    }
+    fclose(fp);
+
+    //mengubah setiap huruf alfabet menjadi kapital untuk memudahkan
+	for(int i=0; i<strlen(copy); i++){
+        if(copy[i]>=97 && copy[i]<=122){
+            copy[i]-=32;
+        }
+    }
+    // HuffmanCodes(arr, freq, size);
     return 0;
 }
