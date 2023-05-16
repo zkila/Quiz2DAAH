@@ -85,6 +85,7 @@ int main(int argc, char* argv[])
         printf("Argument tidak valid\nCara execute: ./lukisan -[a/b]\n");
         exit(0);
     }
+
     if (strcmp(argv[1], "-f") == 0) {
         cout << "Masukkan nama file dengan tipe txt (contoh \"file.txt\"): " << endl;
         cin >> filename;
@@ -102,8 +103,6 @@ int main(int argc, char* argv[])
         scanf("%[^\n]s", copy);
     }
     
-
-
     //mengubah setiap huruf alfabet menjadi kapital untuk memudahkan
 	for(int i = 0; i < strlen(copy); i++){
         if(copy[i] >= 97 && copy[i] <= 122){
