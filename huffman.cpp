@@ -24,8 +24,10 @@ void printCodes(struct MinHeapNode* root, string str)
 {
     if (!root)
         return;
-    if (root->data != '$')
-        cout << root->data << ": " << str << "\n";
+    if (root->data != '$'){
+        if(root->data == '\n') cout << "\\n" << ": " << str << "\n";
+	    else cout << root->data << ": " << str << "\n";
+    }
     printCodes(root->left, str + "0");
     printCodes(root->right, str + "1");
 }
@@ -80,6 +82,29 @@ int main()
             copy[i]-=32;
         }
     }
-    // HuffmanCodes(arr, freq, size);
+	
+	char curr;
+	int n=0,j,l;
+	for(l = 0; l<strlen(copy);l++){
+		// curr=copy[l];
+		for(j = 0; j<n; j++){
+			if(arr[j]==copy[l]){
+				freq[j]++;
+				break;
+			}
+		}
+		if(j==n){
+			arr[n++]=copy[l];
+			freq[j]++;
+			size++;
+		}
+	}
+
+	cout<<copy<<endl;
+	cout<<arr<<endl;
+	printf("%d\n", freq[0]);
+
+	HuffmanCodes(arr, freq, size);
+
     return 0;
 }
