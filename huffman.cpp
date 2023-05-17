@@ -87,17 +87,19 @@ int main(int argc, char* argv[])
     
     int i = 0;
 
+    //error (panduan argumen cmd)
 	if(argc != 2 || (argv[1][1] != 'f' && argv[1][1] != 's')) {
-        printf("Argument tidak valid\nCara execute: ./lukisan -[a/b]\n");
+        printf("Argument tidak valid\nCara execute: ./huffman -[f/s]\n");
         exit(0);
     }
 
+    //mendapatkan input teks yang akan diencode
     if (strcmp(argv[1], "-f") == 0) {
         cout << "Masukkan nama file dengan tipe txt (contoh \"file.txt\"): " << endl;
         cin >> filename;
         fp = fopen(filename, "r");
 
-        //memasukkan tiap karakter yang dibaca (dari txt) ke string
+        //memasukkan tiap karakter yang dibaca (dari .txt) ke string
         while ((ch = fgetc(fp)) != EOF){
             copy[i] = ch;
             i++;
@@ -117,10 +119,10 @@ int main(int argc, char* argv[])
     }
 	
     //menghitung frekuensi tiap karakter yang muncul
-	char curr;
-	int n = 0;
+    char curr;
+    int n = 0;
     int j, l;
-	for(l = 0; l < strlen(copy); l++){
+    for(l = 0; l < strlen(copy); l++){
 		// curr=copy[l];
 		for(j = 0; j < n; j++){
 			if(arr[j] == copy[l]){
@@ -148,6 +150,7 @@ int main(int argc, char* argv[])
         cout << freq[i] << " ";
     }
     cout << endl << endl << "alokasi bit setiap karakter : " << endl;
+    
 	HuffmanCodes(arr, freq, size);
     printCodes(codes, arr, size);
 
