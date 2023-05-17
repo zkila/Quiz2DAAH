@@ -77,18 +77,18 @@ void printCodes(string codes[], char arr[], int size)
  
 int main(int argc, char* argv[])
 {
-	char arr[256] = "";
+    char arr[256] = "";
     char filename[100] = "";
     char copy[1000] = "";
-	int freq[256] = {0};
-	int size = 0;
+    int freq[256] = {0};
+    int size = 0;
     char ch;
     FILE *fp;    
     
     int i = 0;
 
     //error (panduan argumen cmd)
-	if(argc != 2 || (argv[1][1] != 'f' && argv[1][1] != 's')) {
+    if(argc != 2 || (argv[1][1] != 'f' && argv[1][1] != 's')) {
         printf("Argument tidak valid\nCara execute: ./huffman -[f/s]\n");
         exit(0);
     }
@@ -112,7 +112,7 @@ int main(int argc, char* argv[])
     }
     
     //mengubah setiap huruf alfabet menjadi kapital untuk memudahkan
-	for(int i = 0; i < strlen(copy); i++){
+    for(int i = 0; i < strlen(copy); i++){
         if(copy[i] >= 97 && copy[i] <= 122){
             copy[i] -= 32;
         }
@@ -138,7 +138,7 @@ int main(int argc, char* argv[])
 	}
 
     cout << "sebelum decode : " << endl;
-	cout << copy << endl;
+    cout << copy << endl;
     cout << endl << "karakter unik : " << endl;
 
     for(int i = 0; i < size; i++){
@@ -150,8 +150,8 @@ int main(int argc, char* argv[])
         cout << freq[i] << " ";
     }
     cout << endl << endl << "alokasi bit setiap karakter : " << endl;
-    
-	HuffmanCodes(arr, freq, size);
+
+    HuffmanCodes(arr, freq, size);
     printCodes(codes, arr, size);
 
     string res = "";
