@@ -17,3 +17,5 @@
 - Created the file-reading algorithm
 - Created storecode that stores the code in the string
 - Created the design section on the report
+
+[Report](https://docs.google.com/document/d/1HbeSJKv8TvBFJpD3CsExhCNzDWxVESa5U7HnqrJYTPU/edit)
