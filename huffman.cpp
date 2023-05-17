@@ -3,6 +3,7 @@ using namespace std;
 
 string codes[256];
 
+//struct yang merepresentasikan huffman tree
 struct MinHeapNode {
     char data;
     unsigned freq;
@@ -15,6 +16,8 @@ struct MinHeapNode {
     }
 };
 
+//struct yang digunakan untuk membandingkan minheapnode dengan minheapnode yang lain
+//dapat dimanfaatkan oleh priority queue
 struct compare {
     bool operator()(MinHeapNode* l, MinHeapNode* r)
     {
@@ -22,6 +25,7 @@ struct compare {
     }
 };
  
+//fungsi untuk menyimpan kode ke dalam string
 void storeCodes(struct MinHeapNode* root, string str)
 {
     if (!root)
@@ -32,7 +36,8 @@ void storeCodes(struct MinHeapNode* root, string str)
     storeCodes(root->left, str + "0");
     storeCodes(root->right, str + "1");
 }
- 
+
+//fungsi yang digunakan untuk menyelesaikan huffman tree
 void HuffmanCodes(char data[], int freq[], int size)
 {
     struct MinHeapNode *left, *right, *top;
@@ -57,6 +62,7 @@ void HuffmanCodes(char data[], int freq[], int size)
     storeCodes(minHeap.top(), "");
 }
 
+//fungsi yang digunakan untuk print kode yang telah disimpan
 void printCodes(string codes[], char arr[], int size)
 {
     for (int i = 0; i < size; i++) {
@@ -110,6 +116,7 @@ int main(int argc, char* argv[])
         }
     }
 	
+    //menghitung frekuensi tiap karakter yang muncul
 	char curr;
 	int n = 0;
     int j, l;
@@ -131,7 +138,7 @@ int main(int argc, char* argv[])
     cout << "sebelum decode : " << endl;
 	cout << copy << endl;
     cout << endl << "karakter unik : " << endl;
-	// cout<<arr<<endl;
+
     for(int i = 0; i < size; i++){
         cout << arr[i] << " ";
     }
@@ -156,9 +163,10 @@ int main(int argc, char* argv[])
             }
         }
     }
-
+    //output encoded teks
     cout << res << endl;
 
+    //perbandingan bit
     cout << endl << "bit sebelum : " << strlen(copy) * 8 << endl;
     cout << "bit sesudah : " << res.length() << endl;
 
